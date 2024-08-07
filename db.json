@@ -1,35 +1,68 @@
 {
   "users": [
     {
-      "id": "426f",
-      "email": "thapelo074@gmail.com",
-      "password": "1234567"
+      "id": 1,
+      "email": "user1@example.com",
+      "password": "password1"
+    },
+    {
+      "id": "58e4",
+      "email": "12345@GMAIL.COM",
+      "password": "12345"
+    },
+    {
+      "id": "53d5",
+      "email": "TT@GMAIL.COM",
+      "password": "12345"
+    },
+    {
+      "id": "819c",
+      "email": "12@gmail.com",
+      "password": "12"
     }
   ],
   "recipes": [
     {
-      "id": "bb06",
-      "name": "PAp",
+      "id": 1,
+      "userId": 1,
+      "name": "Pasta Carbonara",
       "ingredients": [
-        "water"
+        "spaghetti",
+        "eggs",
+        "bacon",
+        "parmesan cheese"
       ],
-      "instructions": "cook",
-      "category": "starch",
-      "prepTime": "30",
-      "cookTime": "30",
-      "servings": "hot"
+      "instructions": "...",
+      "category": "Main Course",
+      "prepTime": "15 minutes",
+      "cookTime": "15 minutes",
+      "servings": 4
     },
     {
-      "id": "63d5",
-      "name": "Thapelo Mashao",
+      "id": "19f2",
+      "name": "Refilwe Kgomotso",
       "ingredients": [
-        "pap"
+        "POTATO"
       ],
-      "instructions": "wqdwd",
+      "instructions": "BOIL",
       "category": "starch",
       "prepTime": "30",
       "cookTime": "30",
-      "servings": "hot"
+      "servings": "hot",
+      "userId": "58e4"
+    },
+    {
+      "id": "e329",
+      "name": "PAps",
+      "ingredients": [
+        "water. maize"
+      ],
+      "instructions": "boil the water",
+      "category": "starch",
+      "prepTime": "30",
+      "cookTime": "30",
+      "servings": "hot",
+      "userId": "819c"
     }
   ]
 }

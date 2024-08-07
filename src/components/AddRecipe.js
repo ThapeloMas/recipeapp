@@ -19,18 +19,21 @@ function AddRecipe() {
     setRecipe({ ...recipe, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/recipes", {
-        ...recipe,
-        ingredients: recipe.ingredients.split(",").map((item) => item.trim()),
-      });
-      navigate("/home");
-    } catch (error) {
-      console.error("Error adding recipe:", error);
-    }
-  };
+   const handleSubmit = async (e) => {
+     e.preventDefault();
+     try {
+       const user = JSON.parse(localStorage.getItem("user"));
+       await axios.post("http://localhost:5000/recipes", {
+         ...recipe,
+         userId: user.id,
+         ingredients: recipe.ingredients.split(",").map((item) => item.trim()),
+       });
+       navigate("/home");
+     } catch (error) {
+       console.error("Error adding recipe:", error);
+     }
+   };
+
 
   return (
     <div>

@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 function RecipeItem({ recipe, onDelete }) {
   const handleDelete = async () => {
     try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (recipe.userId !== user.id) {
+        alert("You don't have permission to delete this recipe");
+        return;
+      }
       await axios.delete(`http://localhost:5000/recipes/${recipe.id}`);
       onDelete();
     } catch (error) {

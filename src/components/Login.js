@@ -1,28 +1,32 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/users?email=${email}&password=${password}`
-      );
-      if (response.data.length > 0) {
-        localStorage.setItem("user", JSON.stringify(response.data[0]));
-        navigate("/home"); // Changed from history.push to navigate
-      } else {
-        alert("Invalid credentials");
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/users?email=${email}&password=${password}`
+        );
+        if (response.data.length > 0) {
+          const user = response.data[0];
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ id: user.id, email: user.email })
+          );
+          navigate("/home");
+        } else {
+          alert("Invalid credentials");
+        }
+      } catch (error) {
+        console.error("Login error:", error);
       }
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  };
+    };
 
   return (
     <div>
@@ -44,6 +48,7 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
+      <p>Don't have an account? <Link to="/register">Register here</Link></p>
     </div>
   );
 }

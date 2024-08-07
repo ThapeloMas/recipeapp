@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,7 +23,13 @@ function EditRecipe() {
 
   const fetchRecipe = async () => {
     try {
+      const user = JSON.parse(localStorage.getItem("user"));
       const response = await axios.get(`http://localhost:5000/recipes/${id}`);
+      if (response.data.userId !== user.id) {
+        alert("You don't have permission to edit this recipe");
+        navigate("/home");
+        return;
+      }
       setRecipe({
         ...response.data,
         ingredients: response.data.ingredients.join(", "),
@@ -39,8 +46,10 @@ function EditRecipe() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const user = JSON.parse(localStorage.getItem("user"));
       await axios.put(`http://localhost:5000/recipes/${id}`, {
         ...recipe,
+        userId: user.id,
         ingredients: recipe.ingredients.split(",").map((item) => item.trim()),
       });
       navigate("/home");
@@ -48,7 +57,6 @@ function EditRecipe() {
       console.error("Error updating recipe:", error);
     }
   };
-
   return (
     <div>
       <h2>Edit Recipe</h2>
