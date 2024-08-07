@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "id": "426f",
+      "email": "thapelo074@gmail.com",
+      "password": "1234567"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "bb06",
+      "name": "PAp",
+      "ingredients": [
+        "water"
+      ],
+      "instructions": "cook",
+      "category": "starch",
+      "prepTime": "30",
+      "cookTime": "30",
+      "servings": "hot"
+    },
+    {
+      "id": "63d5",
+      "name": "Thapelo Mashao",
+      "ingredients": [
+        "pap"
+      ],
+      "instructions": "wqdwd",
+      "category": "starch",
+      "prepTime": "30",
+      "cookTime": "30",
+      "servings": "hot"
+    }
+  ]
+}
