@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./Recipe.css";
+import withAuth from "./WithAuth";
 
 function RecipeItem({ recipe, onDelete }) {
   const handleDelete = async () => {
@@ -18,16 +20,21 @@ function RecipeItem({ recipe, onDelete }) {
   };
 
   return (
-    <div>
-      <h3>{recipe.name}</h3>
-      <p>Category: {recipe.category}</p>
-      <p>Preparation Time: {recipe.prepTime}</p>
-      <p>Cooking Time: {recipe.cookTime}</p>
-      <p>Servings: {recipe.servings}</p>
-      <Link to={`/edit-recipe/${recipe.id}`}>Edit</Link>
-      <button onClick={handleDelete}>Delete</button>
+    <div className="card">
+    
+      {recipe.image && <img src={recipe.image} alt={recipe.name} />}
+      <div className="card__content">
+        <h3 className="card__title">{recipe.name}</h3>
+        <p className="card__description">Category: {recipe.category}</p>
+        <p className="card__description">Preparation Time: {recipe.prepTime}</p>
+        <p className="card__description">Cooking Time: {recipe.cookTime}</p>
+        <p className="card__description">Servings: {recipe.servings}</p>
+        <Link to={`/edit-recipe/${recipe.id}`}>Edit</Link>
+        <button onClick={handleDelete}>Delete</button>
+      </div>
+     
     </div>
   );
 }
 
-export default RecipeItem;
+export default withAuth(RecipeItem);

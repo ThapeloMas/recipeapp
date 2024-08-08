@@ -1,10 +1,12 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import RecipeList from "./RecipeList";
 import SearchBar from "./SearchBar";
 import withAuth from "./WithAuth";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { IoAddCircleSharp } from "react-icons/io5";
+
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -46,8 +48,18 @@ function Home() {
     <div>
       <h2>Recipe List</h2>
       <button onClick={handleLogout}>Logout</button>
-      <Link to="/add-recipe">Add New Recipe</Link>
+      <Link to="/add-recipe">
+        <IoAddCircleSharp color="black" size= {50} />
+      </Link>
+      <br></br>
+      <br></br>
+      <Link to="/account">
+        <MdOutlineAccountCircle color="black" size={50} />
+      </Link>
+
       <SearchBar onSearch={handleSearch} />
+      <br></br>
+      <br></br>
       <RecipeList recipes={filteredRecipes} onDelete={fetchRecipes} />
     </div>
   );

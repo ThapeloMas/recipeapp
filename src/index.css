@@ -1,8 +1,10 @@
 
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
+  max-width: 1080px;
+  margin:  20px auto;
   padding: 20px;
+  background-image: linear-gradient(109.6deg, rgb(95, 207, 128) 71.8%, rgb(78, 158, 112) 71.8%)
 }
 
 input, textarea, button {
@@ -12,7 +14,7 @@ input, textarea, button {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: blue;
   border: none;
   color: white;
   cursor: pointer;
@@ -21,4 +23,7 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+.card{
+  
 }

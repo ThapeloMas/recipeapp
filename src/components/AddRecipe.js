@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import withAuth from "./WithAuth";
+import "./Addrecipe.css"; 
 
 function AddRecipe() {
   const [recipe, setRecipe] = useState({
@@ -12,6 +13,7 @@ function AddRecipe() {
     prepTime: "",
     cookTime: "",
     servings: "",
+    image: "",
   });
   const navigate = useNavigate();
 
@@ -19,24 +21,34 @@ function AddRecipe() {
     setRecipe({ ...recipe, [e.target.name]: e.target.value });
   };
 
-   const handleSubmit = async (e) => {
-     e.preventDefault();
-     try {
-       const user = JSON.parse(localStorage.getItem("user"));
-       await axios.post("http://localhost:5000/recipes", {
-         ...recipe,
-         userId: user.id,
-         ingredients: recipe.ingredients.split(",").map((item) => item.trim()),
-       });
-       navigate("/home");
-     } catch (error) {
-       console.error("Error adding recipe:", error);
-     }
-   };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setRecipe({ ...recipe, image: reader.result });
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      await axios.post("http://localhost:5000/recipes", {
+        ...recipe,
+        userId: user.id,
+        ingredients: recipe.ingredients.split(",").map((item) => item.trim()),
+      });
+      navigate("/home");
+    } catch (error) {
+      console.error("Error adding recipe:", error);
+    }
+  };
 
   return (
-    <div>
+    <div className="input-container">
       <h2>Add New Recipe</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -81,6 +93,7 @@ function AddRecipe() {
           onChange={handleChange}
           required
         />
+        <input type="file" onChange={handleImageChange} />
         <button type="submit">Add Recipe</button>
       </form>
     </div>
