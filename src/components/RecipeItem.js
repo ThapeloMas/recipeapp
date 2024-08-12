@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Recipe.css";
 import withAuth from "./WithAuth";
 
+
 function RecipeItem({ recipe, onDelete }) {
   const handleDelete = async () => {
     try {
@@ -21,7 +22,6 @@ function RecipeItem({ recipe, onDelete }) {
 
   return (
     <div className="card">
-    
       {recipe.image && <img src={recipe.image} alt={recipe.name} />}
       <div className="card__content">
         <h3 className="card__title">{recipe.name}</h3>
@@ -29,10 +29,12 @@ function RecipeItem({ recipe, onDelete }) {
         <p className="card__description">Preparation Time: {recipe.prepTime}</p>
         <p className="card__description">Cooking Time: {recipe.cookTime}</p>
         <p className="card__description">Servings: {recipe.servings}</p>
-        <Link to={`/edit-recipe/${recipe.id}`}>Edit</Link>
+        <Link to={`/edit-recipe/${recipe.id}`}>
+          Edit
+        </Link>
+
         <button onClick={handleDelete}>Delete</button>
       </div>
-     
     </div>
   );
 }
