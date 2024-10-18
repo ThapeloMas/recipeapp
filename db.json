@@ -8,6 +8,11 @@
     {
       "password": "123456",
       "id": "f155"
+    },
+    {
+      "id": "0240",
+      "email": "test@gmail.com",
+      "password": "123456"
     }
   ],
   "recipes": [
